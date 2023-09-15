@@ -47,5 +47,9 @@ public class EntidadController {
     public Mono<Void> delete(@PathVariable Integer id) {
         return this.entidadService.delete(id);
     }
-
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PutMapping(value = "/{id}/activar", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public Mono<EntidadResponseDTO> activarEntidad(@PathVariable Integer id) {
+        return this.entidadService.activar(id);
+    }
 }

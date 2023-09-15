@@ -17,4 +17,6 @@ public interface EntidadService {
     Mono<EntidadResponseDTO> update(Integer id, EntidadRequestDTO request);
 
     Mono<Void> delete(Integer id);
+
+    Mono<EntidadResponseDTO> activar(Integer id);
 }

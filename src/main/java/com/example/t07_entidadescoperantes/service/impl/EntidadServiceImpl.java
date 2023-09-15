@@ -60,4 +60,14 @@ public class EntidadServiceImpl implements EntidadService {
                 .then();
 
     }
+    @Override
+    public Mono<EntidadResponseDTO> activar(Integer id) {
+        return this.entidadRepository.findById(id)
+                .switchIfEmpty(Mono.error(new ResourceNotFoundException(("El id: " + id + " no fue encontrado"))))
+                .flatMap(entidad -> {
+                    entidad.setActive("A"); // Cambia el estado a "Activo"
+                    return entidadRepository.save(entidad);
+                })
+                .map(EntidadMapper::toDto);
+    }
 }
